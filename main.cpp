@@ -65,13 +65,21 @@ int main() {
 
     #define END_SIZE 10000
     #define SIZE_STEP 1000
-    #define SUBJECT choice_sort
+    #define SUBJECT choice_sort  
+    #include "case1.hpp"
+    #undef SUBJECT
+    #undef SIZE_STEP
+    #undef END_SIZE
+
+    #define END_SIZE 1000000
+    #define SIZE_STEP 20000
+    #define SUBJECT qsort_3mid 
     #include "case1.hpp"
     #undef SUBJECT
     #undef SIZE_STEP
     #undef END_SIZE
 
     fclose(output_tbl);
-    printf("Testing is over in %6lf seconds. Results were stored in the file \"" OUTPUT_TABLE "\".\nHave a good day.\n",
+    printf("Testing is over in %6lf seconds. Results were stored to the file \"" OUTPUT_TABLE "\".\nHave a good day.\n",
         (double)(clock() - __global_time) / 1e6);
 }

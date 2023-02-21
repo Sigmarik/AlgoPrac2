@@ -38,7 +38,7 @@ for (size_t array_size = START_SIZE;
     for (size_t micro_id = 0; micro_id < TEST_COUNT; ++micro_id) {
         RESET_CLOCK;
 
-        srand(0);
+        srand((unsigned int)micro_id);
         for (size_t elem_id = 0; elem_id < array_size; ++elem_id) {
             Array[elem_id] = (elem_t)rand();
         }
@@ -48,10 +48,10 @@ for (size_t array_size = START_SIZE;
 
         for (size_t elem_id = 1; elem_id + 1 < array_size; ++elem_id) {
             if (Array[elem_id] >= Array[elem_id + 1]) continue;
-            printf("\nIncorrect sorting result at index %ld.\n", elem_id);
+            printf("\nIncorrect sorting result at index %ld.\n", (long)elem_id);
             for (size_t id = elem_id >DEBUG_BATCH_SIZE ? elem_id - DEBUG_BATCH_SIZE : 0;
                  id < elem_id + DEBUG_BATCH_SIZE && id < array_size; ++id)
-                printf("[%ld] = %d, ", id, Array[id]);
+                printf("[%ld] = %ld, ", (long)id, (long)Array[id]);
             putc('\n', stdout);
             return 1;
         }
@@ -63,6 +63,6 @@ for (size_t array_size = START_SIZE;
     WRITE_RESULT;
 }
 
-printf("  [%6lf s] [fin. at %6lf s] [%4ld tests]\n", 
+printf("  [%-3.5lf s] [fin. at %-4.5lf s] [%4ld tests]\n", 
     time_from(start_time), time_from(__global_time), (long int)test_counter);
 }

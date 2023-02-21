@@ -21,12 +21,32 @@ elem_t mid3(elem_t* begin, elem_t* end) {
     return candidates[CANDIDATE_COUNT >> 1];
 }
 
-typedef elem_t midchoice_fn_t(elem_t* begin, elem_t* end);
+typedef elem_t pivot_fn_t(elem_t* begin, elem_t* end);
 
-void qsort(elem_t* begin, elem_t* end, midchoice_fn_t* choice_fn) {
-    // TODO: Ended work here. Need to write QSORT core and differend pivot element choice functions.
+void quick_sort(elem_t* begin, elem_t* end, pivot_fn_t* pivot_fn) {
+    if (end <= begin + 1) return;
+
+    elem_t pivot = pivot_fn(begin, end);
+
+    // if (end == begin + 2) {
+    //     printf("[%ld, %ld], pivot = %ld\n", (long)begin[0], (long)begin[1], (long)pivot);
+    // }
+
+    elem_t* left = begin, *right = end - 1;
+
+    while (left < right) {
+        if (*left <= pivot && *right >= pivot) swap(left, right);
+        if (*left >= pivot) ++left;
+        if (*right <= pivot && left < right) --right;
+    }
+
+    elem_t* split = right;
+    while (*split > pivot && split < end) ++split;
+
+    quick_sort(begin, split, pivot_fn);
+    quick_sort(split, end,   pivot_fn);
 }
 
-SORTING(qsort_3mid) { qsort(begin, end, mid3); }
+SORTING(qsort_3mid) { quick_sort(begin, end, mid3); }
 
 #endif

@@ -20,7 +20,7 @@ CFLAGS = -I./ -D _DEBUG -ggdb3 -std=c++2a -O0 -Wall -Wextra -Weffc++\
 }unreachable,vla-bound,vptr\
 -pie -Wstack-usage=8192
 
-RELEASE_CFLAGS = -I./
+RELEASE_CFLAGS = -I./ -O3
 
 BLD_FOLDER = build
 
