@@ -7,8 +7,11 @@
 
 #include "config.h"
 
+// TODO: Separate compilation would be better in this case... 
+// TODO: But who needs better compilation techniques, project structure or good code practices?
 #include "quadratic_sorts.hpp"
 #include "qsort.hpp"
+#include "mergesort.hpp"
 
 #define _AS_STR(something) #something
 #define AS_STR(something) _AS_STR(something)
@@ -47,35 +50,62 @@ int main() {
 
     fprintf(output_tbl, "TestID,Subject,Size,Time\n");
 
-    #define END_SIZE 10000
-    #define SIZE_STEP 1000
-    #define SUBJECT bobble_sort
-    #include "case1.hpp"
+    #ifdef _DEBUG
+        #define END_SIZE 3000
+        #define SIZE_STEP 200
+    #else
+        #define END_SIZE 10000
+        #define SIZE_STEP 1000
+    #endif
+
+        #define SUBJECT bobble_sort
+        #include "case1.hpp"
+        #undef SUBJECT
+
+        #define SUBJECT choice_sort  
+        #include "case1.hpp"
+
     #undef SUBJECT
     #undef SIZE_STEP
     #undef END_SIZE
 
-    #define END_SIZE 1000000
-    #define SIZE_STEP 20000
-    #define SUBJECT insert_sort
-    #include "case1.hpp"
-    #undef SUBJECT
+    #ifdef _DEBUG
+        #define END_SIZE 10000
+        #define SIZE_STEP 1000
+    #else
+        #define END_SIZE 1000000
+        #define SIZE_STEP 20000
+    #endif
+        #define SUBJECT insert_sort
+        #include "case1.hpp"
+        #undef SUBJECT
     #undef SIZE_STEP
     #undef END_SIZE
 
-    #define END_SIZE 10000
-    #define SIZE_STEP 1000
-    #define SUBJECT choice_sort  
-    #include "case1.hpp"
-    #undef SUBJECT
-    #undef SIZE_STEP
-    #undef END_SIZE
+    #ifdef _DEBUG
+        #define END_SIZE 100000
+        #define SIZE_STEP 10000
+    #else
+        #define END_SIZE 10000000
+        #define SIZE_STEP 100000
+    #endif
 
-    #define END_SIZE 1000000
-    #define SIZE_STEP 20000
-    #define SUBJECT qsort_3mid 
-    #include "case1.hpp"
-    #undef SUBJECT
+        #define SUBJECT qsort_3mid 
+        #include "case1.hpp"
+        #undef SUBJECT
+
+        #define SUBJECT qsort_rand
+        #include "case1.hpp"
+        #undef SUBJECT
+
+        #define SUBJECT qsort_mmid
+        #include "case1.hpp"
+        #undef SUBJECT
+
+        #define SUBJECT merge_sort
+        #include "case1.hpp"
+        #undef SUBJECT
+
     #undef SIZE_STEP
     #undef END_SIZE
 
