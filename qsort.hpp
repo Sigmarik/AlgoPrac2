@@ -28,10 +28,6 @@ void quick_sort(elem_t* begin, elem_t* end, pivot_fn_t* pivot_fn) {
 
     elem_t pivot = pivot_fn(begin, end);
 
-    // if (end == begin + 2) {
-    //     printf("[%ld, %ld], pivot = %ld\n", (long)begin[0], (long)begin[1], (long)pivot);
-    // }
-
     elem_t* left = begin, *right = end - 1;
 
     while (left < right) {

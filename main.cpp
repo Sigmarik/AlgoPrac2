@@ -80,6 +80,6 @@ int main() {
     #undef END_SIZE
 
     fclose(output_tbl);
-    printf("Testing is over in %6lf seconds. Results were stored to the file \"" OUTPUT_TABLE "\".\nHave a good day.\n",
+    printf("Testing is over in %lf seconds. Results were stored to the file \"" OUTPUT_TABLE "\".\nHave a good day.\n",
         (double)(clock() - __global_time) / 1e6);
 }
