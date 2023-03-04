@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -I./ -D _DEBUG -ggdb3 -std=c++2a -O0 -Wall -Wextra -Weffc++\
+CFLAGS = -I./ -I./sortings/ -D _DEBUG -ggdb3 -std=c++2a -O0 -Wall -Wextra -Weffc++\
 -Waggressive-loop-optimizations -Wc++14-compat\
 -Wcast-align -Wchar-subscripts -Wconditionally-supported\
 -Wconversion -Wctor-dtor-privacy -Wempty-body -Wfloat-equal -Wformat-nonliteral\
