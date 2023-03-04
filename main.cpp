@@ -12,6 +12,7 @@
 #include "quadratic_sorts.hpp"
 #include "qsort.hpp"
 #include "mergesort.hpp"
+#include "LSD.hpp"
 
 #define _AS_STR(something) #something
 #define AS_STR(something) _AS_STR(something)
@@ -103,6 +104,10 @@ int main() {
         #undef SUBJECT
 
         #define SUBJECT merge_sort
+        #include "case1.hpp"
+        #undef SUBJECT
+
+        #define SUBJECT lsd_sort
         #include "case1.hpp"
         #undef SUBJECT
 

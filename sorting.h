@@ -6,6 +6,9 @@
 
 typedef u_int32_t elem_t;
 
+#define ARR_SIZE(array) (sizeof(array) / sizeof(*array))
+#define PTR_DIFFERENCE(ptr_a, ptr_b) (((uintptr_t)(ptr_a) - (uintptr_t)(ptr_b)) / sizeof(*ptr_a))
+
 #define SORTING(name) void name(elem_t* begin, elem_t* end)
 
 #define min(alpha, beta) ((alpha) < (beta) ? (alpha) : (beta))
@@ -13,8 +16,8 @@ typedef u_int32_t elem_t;
 
 static inline void swap(elem_t* alpha, elem_t* beta) {
     elem_t buffer = *alpha;
-    *beta = *alpha;
-    *alpha = buffer;
+    *alpha = *beta;
+    *beta = buffer;
 }
 
 #endif
