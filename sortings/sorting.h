@@ -20,4 +20,6 @@ static inline void swap(elem_t* alpha, elem_t* beta) {
     *beta = buffer;
 }
 
+static const elem_t POISON = 0xDEADBABE;
+
 #endif

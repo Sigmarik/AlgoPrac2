@@ -33,7 +33,6 @@ for (size_t array_size = START_SIZE;
         fflush(stdout);
     }
 
-    //printf("Testing size %d...\n", (int) array_size);
     unsigned long long TestTime = 0;
     for (size_t micro_id = 0; micro_id < TEST_COUNT; ++micro_id) {
         RESET_CLOCK;
@@ -60,7 +59,13 @@ for (size_t array_size = START_SIZE;
     }
 
     size_t TestSize = array_size;
+
     WRITE_RESULT;
+
+    if (TestTime > THRESHOLD_TIME) {
+        putc('X', stdout);
+        break;
+    }
 }
 
 printf("  [%-3.5lf s] [fin. at %-4.5lf s] [%4ld tests]\n", 

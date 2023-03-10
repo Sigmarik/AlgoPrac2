@@ -22,8 +22,15 @@
 #define DELTA_TIME (__current_clock - __start_clock)
 #define WRITE_RESULT fprintf(output_tbl, "%d," AS_STR(SUBJECT) ",%ld,%ld\n", (int)TestID, (long)TestSize, (long)TestTime)
 
+#define EMPTY
+
 #define _CONCAT(alpha, beta) alpha ## beta
 #define CONCAT(alpha, beta) _CONCAT(alpha, beta)
+
+#define CONCAT_MACRO_STRING(macro, string) _CONCAT(macro, EMPTY) ## string
+#define CONCAT_STRING_MACRO(string, macro) string ## _CONCAT(macro, EMPTY)
+
+#include "heap_org/heaps.hpp"
 
 #define RECREATE do {                   \
     array_stack_dtr(array_stack);       \
@@ -55,13 +62,24 @@ int main() {
         #define END_SIZE 3000
         #define SIZE_STEP 200
     #else
-        #define END_SIZE 100000
+        #define END_SIZE 30000
         #define SIZE_STEP 2000
     #endif
 
         #define SUBJECT bobble_sort
         #include "case1.hpp"
         #undef SUBJECT
+
+    #undef SIZE_STEP
+    #undef END_SIZE
+
+    #ifdef _DEBUG
+        #define END_SIZE 3000
+        #define SIZE_STEP 200
+    #else
+        #define END_SIZE 100000
+        #define SIZE_STEP 2000
+    #endif
 
         #define SUBJECT choice_sort  
         #include "case1.hpp"
@@ -102,6 +120,9 @@ int main() {
         #define SUBJECT lsd_sort
         #include "case1.hpp"
         #undef SUBJECT
+
+        #include "heap_org/heap_calls_basic.hpp"
+        // #include "heap_org/heap_calls_opti.hpp"
 
     #undef SIZE_STEP
     #undef END_SIZE

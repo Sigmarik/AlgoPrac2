@@ -29,7 +29,7 @@ static void LSD_pass(elem_t* const array, const size_t size, const unsigned char
     for (size_t id = 1; id < ARR_SIZE(counts); id++) counts[id] += counts[id - 1];
 
     for (size_t id = 0; id < size; id++) {
-        unsigned char char_id = UCHAR_MAX - get_char(copy_buffer[id], byte_id);
+        unsigned char char_id = (unsigned char)(UCHAR_MAX - get_char(copy_buffer[id], byte_id));
         array[counts[char_id] + final_counts[char_id]] = copy_buffer[id];
         ++final_counts[char_id];
     }
